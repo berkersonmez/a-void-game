@@ -12,7 +12,7 @@ import voidgame.gameplay.PlayState;
 /**
  *
  * @author Berker Sönmez <brkrsnmz@gmail.com>
- * @version 0.1
+ * @version 0.0.1
  */
 public class Game extends StateBasedGame {
 
@@ -36,7 +36,7 @@ public class Game extends StateBasedGame {
      
      @Override
      public void initStatesList(GameContainer gc) throws SlickException {
-         addState(new PlayState());
+         addState(new PlayState(width, height));
      }
  
      public static void main(String[] args) throws SlickException
