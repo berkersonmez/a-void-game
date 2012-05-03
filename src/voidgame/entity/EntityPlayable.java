@@ -7,20 +7,19 @@ package voidgame.entity;
 
 import org.newdawn.slick.Input;
 import org.newdawn.slick.KeyListener;
-import org.newdawn.slick.geom.Vector2f;
+import voidgame.library.Physics;
 /**
  *
  * @author Berker Sönmez <brkrsnmz@gmail.com>
  */
 public class EntityPlayable extends EntityAnimated implements KeyListener{
     public static final int STARTING_SPEED_COEFFICIENT = 5;
-    private int speedCoefficient;
+    
     private int[] movableArea = {0, 0, 0, 0};
     
-    public EntityPlayable(int[] newMovableArea) {
-        speedCoefficient = STARTING_SPEED_COEFFICIENT;
+    public EntityPlayable(int[] newMovableArea, int initWidth, int initHeight, double initAcc, double initMaxSpeed, double newX, double newY) {
+        setPhysics(initWidth, initHeight, initAcc, initMaxSpeed, newX, newY);
         movableArea = newMovableArea;
-        setSpeed(speedCoefficient);
     }
     
     public boolean isInMovableArea() {
@@ -32,44 +31,33 @@ public class EntityPlayable extends EntityAnimated implements KeyListener{
             setPosition(getX(), movableArea[1]);
             return false;
         }
-        if (!(getX()+width <= movableArea[2]-movableArea[0])) {
-            setPosition(movableArea[2]-movableArea[0]-width, getY());
+        if (!(getX()+getWidth() <= movableArea[2]-movableArea[0])) {
+            setPosition(movableArea[2]-movableArea[0]-getWidth(), getY());
             return false;
         }
-        if (!(getY()+height <= movableArea[3]-movableArea[1])) {
-            setPosition(getX(), movableArea[3]-movableArea[1]-height);
+        if (!(getY()+getHeight() <= movableArea[3]-movableArea[1])) {
+            setPosition(getX(), movableArea[3]-movableArea[1]-getHeight());
             return false;
         }
         
         return true;
     }
     
-    @Override
-    public void move(int delta) {
-        if (isMoving() && isInMovableArea()) {
-            Vector2f realVelocity = new Vector2f(getVelocity());
-            realVelocity.set(delta*realVelocity.getX(), delta*realVelocity.getY());
-            getPosition().add(realVelocity);
-        }
-        if (!isInMovableArea()) {
-            stopMoving();
-        }
-    }
-    
+        
     @Override
     public void keyPressed(int i, char c) {
         switch (i) {
             case Input.KEY_UP: case Input.KEY_W:
-                addVelocity(270);
+                addMovement(Physics.UP);
                 break;
             case Input.KEY_DOWN: case Input.KEY_S:
-                addVelocity(90);
+                addMovement(Physics.DOWN);
                 break;
             case Input.KEY_RIGHT: case Input.KEY_D:
-                addVelocity(0);
+                addMovement(Physics.RIGHT);
                 break;
             case Input.KEY_LEFT: case Input.KEY_A:
-                addVelocity(180);
+                addMovement(Physics.LEFT);
                 break;
         }
     }
@@ -78,16 +66,16 @@ public class EntityPlayable extends EntityAnimated implements KeyListener{
     public void keyReleased(int i, char c) {
         switch (i) {
             case Input.KEY_UP: case Input.KEY_W:
-                substractVelocity(270);
+                removeMovement(Physics.UP);
                 break;
             case Input.KEY_DOWN: case Input.KEY_S:
-                substractVelocity(90);
+                removeMovement(Physics.DOWN);
                 break;
             case Input.KEY_RIGHT: case Input.KEY_D:
-                substractVelocity(0);
+                removeMovement(Physics.RIGHT);
                 break;
             case Input.KEY_LEFT: case Input.KEY_A:
-                substractVelocity(180);
+                removeMovement(Physics.LEFT);
                 break;
         }
     }

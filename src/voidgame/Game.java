@@ -26,7 +26,7 @@ public class Game extends StateBasedGame {
      static final String title = "A Void Game";
  
      static final int fpslimit = 60;
-     static final double version = 0.1;
+     static final double version = 0.01;
      
      
      public Game(String title)
