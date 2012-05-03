@@ -6,6 +6,7 @@
 package voidgame.library;
 
 import java.util.ArrayList;
+import voidgame.gameplay.PlayState;
 
 /**
  *
@@ -22,6 +23,7 @@ public class Physics {
     private double acc;
     private int width;
     private int height;
+    private boolean restrictedMovement = true;
     protected boolean upFlag = false;
     protected boolean rightFlag = false;
     protected boolean leftFlag = false;
@@ -39,10 +41,42 @@ public class Physics {
     }
     
     public void move(int delta) {
-        calculateVelocity();
-        if (isMoving) {
-            position = position.add(getVelocityVector().multi(delta));
+        if (testAndKeepInMovableArea()) {
+            calculateVelocity();
+            if (isMoving) {
+                position = position.add(getVelocityVector().multi(delta));
+            }
+        } else {
+            isMoving = false;
+            vx = 0; vy = 0;
         }
+    }
+    
+    public void setRestrictedMovement(boolean b) {
+        restrictedMovement = b;
+    }
+    
+    public boolean testAndKeepInMovableArea() {
+        if (!restrictedMovement) {
+            return true;
+        }
+        if (!(position.getX() >= PlayState.gameBorderX)) {
+            setPosition(PlayState.gameBorderX, (int) position.getY());
+            return false;
+        }
+        if (!(position.getY() >= PlayState.gameBorderY)) {
+            setPosition((int) position.getX(), PlayState.gameBorderY);
+            return false;
+        }
+        if (!(position.getX()+width <= PlayState.gameBorderWidth+PlayState.gameBorderX)) {
+            setPosition(PlayState.gameBorderWidth+PlayState.gameBorderX-width, (int) position.getY());
+            return false;
+        }
+        if (!(position.getY()+height <= PlayState.gameBorderHeight+PlayState.gameBorderY)) {
+            setPosition((int) position.getX(), PlayState.gameBorderHeight+PlayState.gameBorderY-height);
+            return false;
+        }
+        return true;
     }
     
     public void addMovement(int direction) {
