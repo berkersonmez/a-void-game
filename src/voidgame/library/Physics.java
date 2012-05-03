@@ -99,6 +99,13 @@ public class Physics {
         return height;
     }
     
+    public double getMaxAxisSpeed() {
+        if ((upFlag || downFlag) && (rightFlag || leftFlag)) {
+            return maxSpeed * (Math.sqrt(2)/2);
+        }
+        return maxSpeed;
+    }
+    
     public void calculateVelocity() {
         // y-axis
         if (upFlag) {
@@ -109,8 +116,8 @@ public class Physics {
             vy += acc;
             if (!isMoving) isMoving = true;
         }
-        if (vy > maxSpeed) vy = maxSpeed;
-        if (vy < -maxSpeed) vy = -maxSpeed;
+        if (vy > getMaxAxisSpeed()) vy = getMaxAxisSpeed();
+        if (vy < -getMaxAxisSpeed()) vy = -getMaxAxisSpeed();
         if (!upFlag && vy < 0) {
             vy += acc;
             if (vy > 0) { vy = 0; }
@@ -129,8 +136,8 @@ public class Physics {
             vx += acc;
             if (!isMoving) isMoving = true;
         }
-        if (vx > maxSpeed) vx = maxSpeed;
-        if (vx < -maxSpeed) vx = -maxSpeed;
+        if (vx > getMaxAxisSpeed()) vx = getMaxAxisSpeed();
+        if (vx < -getMaxAxisSpeed()) vx = -getMaxAxisSpeed();
         if (!leftFlag && vx < 0) {
             vx += acc;
             if (vx > 0) { vx = 0; }

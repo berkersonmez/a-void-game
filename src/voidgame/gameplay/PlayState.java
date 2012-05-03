@@ -43,7 +43,7 @@ public class PlayState extends BasicGameState {
     public void init(GameContainer arg0, StateBasedGame arg1) throws SlickException {
         entityManager = new EntityManager();
         int[] movableArea = {gameBorderX, gameBorderY, gameBorderWidth, gameBorderHeight};
-        player = new Winky(spriteManager, movableArea, 60, 65, 0.1, 1, 100, 100);
+        player = new Winky(spriteManager, movableArea, 60, 65, 0.05, 0.5, 100, 100);
         entityManager.addEntity(player);
     }
     
