@@ -17,7 +17,7 @@ import voidgame.gameplay.PlayState;
 public class Game extends StateBasedGame {
 
      static final int height = 480;
-     static final int width = 640;
+     static final int width = 800;
  
      static final boolean fullscreen = false;
  

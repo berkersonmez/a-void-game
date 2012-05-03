@@ -10,24 +10,28 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 import voidgame.entity.EntityManager;
-import voidgame.entity.Winky;
 import voidgame.entity.EntityPlayable;
+import voidgame.entity.Winky;
 import voidgame.resource.image.SpriteManager;
+import voidgame.screen.Screen;
 /**
  *
  * @author Berker Sönmez <brkrsnmz@gmail.com>
  */
 public class PlayState extends BasicGameState {
-    private int gameBorderWidth = 620;
-    private int gameBorderHeight = 460;
-    private int gameBorderX = 10;
-    private int gameBorderY = 10;
+    public static int gameBorderWidth = 760;
+    public static int gameBorderHeight = 440;
+    public static int gameBorderX = 20;
+    public static int gameBorderY = 20;
+    public static int width;
+    public static int height;
     private SpriteManager spriteManager = SpriteManager.getInstance();
     private EntityManager entityManager;
     private EntityPlayable player;
     
     public PlayState(int screenWidth, int screenHeight) {
-        
+        width = screenWidth;
+        height = screenHeight;
     }
     
     public SpriteManager getSpriteManager() {
@@ -45,6 +49,7 @@ public class PlayState extends BasicGameState {
         int[] movableArea = {gameBorderX, gameBorderY, gameBorderWidth, gameBorderHeight};
         player = new Winky(spriteManager, movableArea, 60, 65, 0.05, 0.5, 100, 100);
         entityManager.addEntity(player);
+        
     }
     
     @Override
@@ -59,6 +64,7 @@ public class PlayState extends BasicGameState {
     
     @Override
     public void render(GameContainer gc, StateBasedGame sbg, Graphics gr) throws SlickException {
+        Screen.drawBorders(gr);
         entityManager.renderAll();
     }
     

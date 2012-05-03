@@ -21,28 +21,6 @@ public class EntityPlayable extends EntityAnimated implements KeyListener{
         setPhysics(initWidth, initHeight, initAcc, initMaxSpeed, newX, newY);
         movableArea = newMovableArea;
     }
-    
-    public boolean isInMovableArea() {
-        if (!(getX() >= movableArea[0])) {
-            setPosition(movableArea[0], getY());
-            return false;
-        }
-        if (!(getY() >= movableArea[1])) {
-            setPosition(getX(), movableArea[1]);
-            return false;
-        }
-        if (!(getX()+getWidth() <= movableArea[2]-movableArea[0])) {
-            setPosition(movableArea[2]-movableArea[0]-getWidth(), getY());
-            return false;
-        }
-        if (!(getY()+getHeight() <= movableArea[3]-movableArea[1])) {
-            setPosition(getX(), movableArea[3]-movableArea[1]-getHeight());
-            return false;
-        }
-        
-        return true;
-    }
-    
         
     @Override
     public void keyPressed(int i, char c) {
