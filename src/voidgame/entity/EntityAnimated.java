@@ -15,6 +15,7 @@ public abstract class EntityAnimated extends Entity {
     
     
     
+    @Override
     public void render() {
         sprite.draw(getX(), getY());
     }

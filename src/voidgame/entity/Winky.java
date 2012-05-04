@@ -2,9 +2,7 @@
 
 package voidgame.entity;
 
-import org.newdawn.slick.Image;
 import voidgame.resource.image.SpriteManager;
-import voidgame.gameplay.PlayState;
 /**
  *
  * @author Berker

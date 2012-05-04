@@ -5,8 +5,6 @@
 
 package voidgame.entity;
 
-import org.newdawn.slick.geom.Vector2f;
-import org.newdawn.slick.util.FastTrig;
 import voidgame.library.Physics;
 /**
  *
