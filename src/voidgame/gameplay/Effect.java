@@ -11,9 +11,9 @@ import java.util.Random;
  * @author Berker Sönmez <brkrsnmz@gmail.com>
  */
 public enum Effect {
-    ARROW_COUNT(0, 5, 2, 10),
+    ARROW_COUNT(0, 5, 1, 3),
     ARROW_CHANCE(1, 3, 1, 2),
-    ARROWS_ON_SCREEN(2, 1, 1, 2);
+    ARROWS_ON_SCREEN(2, 1, 0, 1);
     
     public final int id;
     public final int start;

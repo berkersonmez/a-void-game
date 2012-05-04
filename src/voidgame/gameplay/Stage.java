@@ -6,6 +6,7 @@
 package voidgame.gameplay;
 
 import java.util.Map;
+import voidgame.Option;
 
 /**
  *
@@ -42,7 +43,11 @@ public class Stage {
     }
     
     public Stage(Stage oldStage, Map<Integer, Effect> effects) {
+        for (int i = 0 ; i < 3 ; i++) {
+            if (effects.containsKey(i))System.out.println(effects.get(i).id + " : mi:" + effects.get(i).min + " - mx:" + effects.get(i).max + " - v:" + effects.get(i).val);
+        }
         arrowCount = oldStage.arrowCount;
+        arrowCount.val += Option.STAGE_ARROW_COUNT_INCREASE_PER_LEVEL;
         if (effects.containsKey(arrowCount.id))
             arrowCount.val += effects.get(arrowCount.id).val;
         arrowChance = oldStage.arrowChance;
@@ -53,11 +58,11 @@ public class Stage {
             arrowsOnScreen.val += effects.get(arrowsOnScreen.id).val;
         arrowsLeft = arrowCount.val;
         
-        System.out.println("====STAGE CREATED====");
+        System.out.println("====STAGE CREATED FROM OLD====");
         System.out.println("Arrow Count: " + arrowCount.val);
         System.out.println("Arrow Chance: %" + arrowChance.val);
         System.out.println("Arrows On Screen: " + arrowsOnScreen.val);
-        System.out.println("=====================");
+        System.out.println("==============================");
     }
     
     public boolean isArrowLeft() {

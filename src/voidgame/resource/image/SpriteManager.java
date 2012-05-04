@@ -43,7 +43,7 @@ public class SpriteManager {
         Image[] imageArray = new Image[numberOfTiles];
         for (int i=0 ; i<numberOfTiles ; i++) {
             imageArray[i] = bigSpriteSource.getSubImage(x+i*width, y, width, height);
-            imageArray[i].rotate(direction*90f);
+            imageArray[i].rotate(direction*90f-90f);
         }
         return new Animation(imageArray, duration, true);
     }

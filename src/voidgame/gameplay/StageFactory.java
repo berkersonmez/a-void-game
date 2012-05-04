@@ -6,6 +6,7 @@
 package voidgame.gameplay;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 import voidgame.Option;
@@ -22,6 +23,8 @@ public class StageFactory {
     public static Map<Integer, Effect> effect;
     
     public static void init() {
+        effectChances = new ArrayList<Integer>();
+        effect = new HashMap<Integer, Effect>();
         effectChances.add(Option.STAGE_DEFAULT_EFFECT_CHANCE_1);
         effectChances.add(Option.STAGE_DEFAULT_EFFECT_CHANCE_2);
         effectChances.add(Option.STAGE_DEFAULT_EFFECT_CHANCE_3);
@@ -45,8 +48,10 @@ public class StageFactory {
                     effect.put(e.id, e);
                 }
             }
+            effect.clear();
             stg = new Stage(stg, effect);
         }
+        stageCount++;
     }
     
     public static void handleEffectChances() {

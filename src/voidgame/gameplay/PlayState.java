@@ -58,7 +58,7 @@ public class PlayState extends BasicGameState {
         int[] movableArea = {gameBorderX, gameBorderY, gameBorderWidth, gameBorderHeight};
         player = new Winky(spriteManager, movableArea, Option.ENTITY_WINKY_WIDTH, Option.ENTITY_WINKY_HEIGHT, Option.ENTITY_WINKY_ACC, Option.ENTITY_WINKY_MAX_SPEED, Option.ENTITY_WINKY_START_POS_X, Option.ENTITY_WINKY_START_POS_Y);
         entityManager.addEntity(player);
-        
+        StageFactory.init();
     }
     
     @Override

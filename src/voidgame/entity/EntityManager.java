@@ -33,12 +33,20 @@ public class EntityManager {
     }
     
     public void updateAll(int delta) {
+        ArrayList<Integer> entitiesToDelete = new ArrayList<Integer>();
         for (Entity entity : entities) {
             if (entity.physics.isOutOfScreen()) {
-                entities.remove(entity);
+                entitiesToDelete.add(entities.indexOf(entity));
                 if (entity instanceof Arrow) numberOfArrows--;
             } else
                 entity.update(delta);
+        }
+        deleteEntities(entitiesToDelete);
+    }
+    
+    public void deleteEntities(ArrayList<Integer> entityList) {
+        for (int entity : entityList) {
+            entities.remove(entity);
         }
     }
     
