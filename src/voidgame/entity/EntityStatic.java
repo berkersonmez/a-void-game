@@ -14,6 +14,7 @@ import org.newdawn.slick.Image;
 public abstract class EntityStatic extends Entity {
     protected Image sprite;
     
+    @Override
     public void render() {
         sprite.draw(getX(), getY());
     }

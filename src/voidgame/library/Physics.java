@@ -5,7 +5,7 @@
 
 package voidgame.library;
 
-import java.util.ArrayList;
+import voidgame.Option;
 import voidgame.gameplay.PlayState;
 
 /**
@@ -131,6 +131,23 @@ public class Physics {
     
     public int getHeight() {
         return height;
+    }
+    
+    public void calculateWidthAndHeightByDirection(int direction) {
+        if (direction == UP || direction == DOWN) {
+            int temp;
+            temp = width;
+            width = height;
+            height = temp;
+        }
+    }
+    
+    public boolean isOutOfScreen() {
+        if (position.getX() < -Option.ENTITY_OUT_OF_SCREEN_BORDER) return true;
+        if (position.getX() > Option.ENTITY_OUT_OF_SCREEN_BORDER + Option.WINDOW_WIDTH) return true;
+        if (position.getY() < -Option.ENTITY_OUT_OF_SCREEN_BORDER) return true;
+        if (position.getY() > Option.ENTITY_OUT_OF_SCREEN_BORDER + Option.WINDOW_HEIGHT) return true;
+        return false;
     }
     
     public double getMaxAxisSpeed() {

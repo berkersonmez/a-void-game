@@ -15,37 +15,25 @@ import voidgame.gameplay.PlayState;
  * @version 0.0.1
  */
 public class Game extends StateBasedGame {
-
-     static final int height = 480;
-     static final int width = 800;
- 
-     static final boolean fullscreen = false;
- 
-     static final boolean showFPS = true;
- 
-     static final String title = "A Void Game";
- 
-     static final int fpslimit = 60;
-     static final double version = 0.01;
      
      
      public Game(String title)
      {
-          super(title + " v" + version);
+          super(title + " v" + Option.WINDOW_TITLE);
      }
      
      @Override
      public void initStatesList(GameContainer gc) throws SlickException {
-         addState(new PlayState(width, height));
+         addState(new PlayState());
      }
  
      public static void main(String[] args) throws SlickException
      {
-          AppGameContainer app = new AppGameContainer(new Game(title));
-          app.setDisplayMode(width, height, fullscreen);
+          AppGameContainer app = new AppGameContainer(new Game(Option.WINDOW_TITLE));
+          app.setDisplayMode(Option.WINDOW_WIDTH, Option.WINDOW_HEIGHT, Option.WINDOW_FULLSCREEN);
           app.setSmoothDeltas(true);
-          app.setTargetFrameRate(fpslimit);
-          app.setShowFPS(showFPS);
+          app.setTargetFrameRate(Option.WINDOW_FPS_LIMIT);
+          app.setShowFPS(Option.WINDOW_SHOWFPS);
           app.start();
      }
 }

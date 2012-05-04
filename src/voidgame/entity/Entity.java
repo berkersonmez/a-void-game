@@ -46,6 +46,10 @@ public abstract class Entity{
         physics.move(delta);
     }
     
+    public void setRestrictedMovement(boolean b) {
+        physics.setRestrictedMovement(b);
+    }
+    
     public void setPosition(int x, int y) {
         physics.setPosition(x, y);
     }

@@ -13,8 +13,6 @@ import org.newdawn.slick.Animation;
 public abstract class EntityAnimated extends Entity {
     protected Animation sprite;
     
-    
-    
     @Override
     public void render() {
         sprite.draw(getX(), getY());

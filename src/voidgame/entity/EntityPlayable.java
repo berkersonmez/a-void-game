@@ -15,11 +15,9 @@ import voidgame.library.Physics;
 public class EntityPlayable extends EntityAnimated implements KeyListener{
     public static final int STARTING_SPEED_COEFFICIENT = 5;
     
-    private int[] movableArea = {0, 0, 0, 0};
     
     public EntityPlayable(int[] newMovableArea, int initWidth, int initHeight, double initAcc, double initMaxSpeed, double newX, double newY) {
         setPhysics(initWidth, initHeight, initAcc, initMaxSpeed, newX, newY);
-        movableArea = newMovableArea;
     }
         
     @Override
