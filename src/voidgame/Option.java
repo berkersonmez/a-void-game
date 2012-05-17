@@ -25,8 +25,6 @@ public class Option {
     public static final int STAGE_DEFAULT_EFFECT_CHANCE_5 = 0;
     
     
-    public static final int STAGE_ARROW_COUNT_INCREASE_PER_LEVEL = 2;
-    
     public static final int ENTITY_WINKY_WIDTH = 60;
     public static final int ENTITY_WINKY_HEIGHT = 65;
     public static final double ENTITY_WINKY_ACC = 0.05;

@@ -75,8 +75,8 @@ public class PlayState extends BasicGameState {
                 state = STATE_NORMAL;
                 break;
             case STATE_NORMAL:
-                if (entityManager.getNumberOfArrows() < StageFactory.stg.getArrowsOnScreen().val) {
-                    if (rnd.nextInt(100)+1 < StageFactory.stg.getArrowChance().val) {
+                if (entityManager.getNumberOfArrows() < Attribute.ARROWS_ON_SCREEN.getVal()) {
+                    if (rnd.nextInt(100)+1 < Attribute.ARROW_CHANCE.getVal()) {
                         if (StageFactory.stg.isArrowLeft()) {
                             entityManager.addArrowRandomly(rnd, spriteManager);
                         } else {

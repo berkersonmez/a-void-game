@@ -40,16 +40,15 @@ public class StageFactory {
             for (int i=0 ; i < 5 ; i++) {
                 int effectPoints = rand.nextInt(100)+1;
                 if (effectChances.get(i) > effectPoints) {
-                    Effect e = Effect.randomEffect(rand);
-                    e.val = rand.nextInt(e.max-e.min+1)+e.min;
-                    if (effect.containsKey(e.id)) {
-                        e.val += effect.get(e.id).val;
+                    Effect e = Effect.getRandom(rand);
+                    if (effect.containsKey(e.getAttrID())) {
+                        e.setVal(effect.get(e.getAttrID()).getVal() + e.getVal());
                     }
-                    effect.put(e.id, e);
+                    effect.put(e.getAttrID(), e);
                 }
             }
-            effect.clear();
             stg = new Stage(stg, effect);
+            effect.clear();
         }
         stageCount++;
     }

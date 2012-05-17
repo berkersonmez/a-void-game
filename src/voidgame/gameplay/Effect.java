@@ -2,6 +2,7 @@
  * All material belongs to Berker Sönmez,
  * do not copy or distribute without permission.
  */
+
 package voidgame.gameplay;
 
 import java.util.Random;
@@ -10,26 +11,28 @@ import java.util.Random;
  *
  * @author Berker Sönmez <brkrsnmz@gmail.com>
  */
-public enum Effect {
-    ARROW_COUNT(0, 5, 1, 3),
-    ARROW_CHANCE(1, 3, 1, 2),
-    ARROWS_ON_SCREEN(2, 1, 0, 1);
-    
-    public final int id;
-    public final int start;
-    public final int min;
-    public final int max;
-    private static final Effect[] VALUES = values();
-    public int val;
-    Effect(int nID, int nStart, int nMin, int nMax) {
-        id = nID;
-        start = nStart;
-        min = nMin;
-        max = nMax;
-        val = nStart;
+public class Effect {
+    private int val;
+    private int attrID;
+    public static Effect getRandom(Random randomSeed) {
+        Effect newEffect = new Effect();
+        newEffect.attrID = Attribute.randomAttributeID(randomSeed);
+        newEffect.val = Attribute.randomEffectValue(newEffect.attrID, randomSeed);
+        return newEffect;
+    }
+    public int getAttrID() {
+        return attrID;
+    }
+    public int getVal() {
+        return val;
     }
     
-    public static Effect randomEffect(Random randomSeed) {
-        return VALUES[randomSeed.nextInt(VALUES.length)];
+    public void setAttrID(int newAttrID) {
+        attrID = newAttrID;
     }
+    
+    public void setVal(int newVal) {
+        val = newVal;
+    }
+    
 }
