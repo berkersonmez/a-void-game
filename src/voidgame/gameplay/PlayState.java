@@ -73,6 +73,7 @@ public class PlayState extends BasicGameState {
                 StageFactory.createStage();
                 System.out.println("==GAME START==");
                 state = STATE_NORMAL;
+                entityManager.updateAll(delta);
                 break;
             case STATE_NORMAL:
                 if (entityManager.getNumberOfArrows() < Attribute.ARROWS_ON_SCREEN.getVal()) {
@@ -84,23 +85,26 @@ public class PlayState extends BasicGameState {
                         }
                     }
                 }
+                entityManager.updateAll(delta);
                 break;
             case STATE_NEXT_STAGE:
                 StageFactory.createStage();
                 state = STATE_NORMAL;
+                entityManager.updateAll(delta);
                 break;
             case STATE_ARROW_TOUCH:
                 break;
             case STATE_GAME_OVER:
                 break;
         }
-        entityManager.updateAll(delta);
+        
     }
     
     @Override
     public void render(GameContainer gc, StateBasedGame sbg, Graphics gr) throws SlickException {
+        Screen.drawBackground(gr);
         Screen.drawBorders(gr);
-        entityManager.renderAll();
+        entityManager.renderAll(gr);
     }
     
 }

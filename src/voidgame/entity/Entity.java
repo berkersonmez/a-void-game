@@ -14,7 +14,7 @@ public abstract class Entity{
     private String name;
     protected Physics physics;
     
-    public void setPhysics(int initWidth, int initHeight, double initAcc, double initMaxSpeed, double newX, double newY) {
+    public void setPhysics(int initWidth, int initHeight, double initAcc, double initMaxSpeed, int newX, int newY) {
         physics = new Physics(initWidth, initHeight, initAcc, initMaxSpeed, newX, newY);
     }
     

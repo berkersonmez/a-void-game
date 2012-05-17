@@ -18,6 +18,8 @@ public class Option {
     public static final int WINDOW_FPS_LIMIT = 60;
     public static final double WINDOW_GAME_VERSION = 0.01;
     
+    public static final boolean DEBUG_DRAW_COLLISION_SHAPES = false;
+    
     public static final int STAGE_DEFAULT_EFFECT_CHANCE_1 = 50;
     public static final int STAGE_DEFAULT_EFFECT_CHANCE_2 = 30;
     public static final int STAGE_DEFAULT_EFFECT_CHANCE_3 = 10;
@@ -42,4 +44,6 @@ public class Option {
     public static final int ENTITY_ARROW_MAX_POS_Y = 416;
     public static final int ENTITY_ARROW_SPAWN_COORD = 64;
     public static final int ENTITY_OUT_OF_SCREEN_BORDER = 64;
+    
+    public static final int ENTITY_COLLISION_TOLERANCE = 5;
 }

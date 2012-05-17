@@ -5,6 +5,8 @@
 
 package voidgame.library;
 
+import org.newdawn.slick.Graphics;
+import org.newdawn.slick.geom.Rectangle;
 import voidgame.Option;
 import voidgame.gameplay.PlayState;
 
@@ -30,14 +32,31 @@ public class Physics {
     protected boolean downFlag = false;
     protected boolean isMoving = false;
     private Vector2d position;
+    private Rectangle mask;
     
-    
-    public Physics(int initWidth, int initHeight, double initAcc, double initMaxSpeed, double newX, double newY) {
+    public Physics(int initWidth, int initHeight, double initAcc, double initMaxSpeed, int newX, int newY) {
         width = initWidth;
         height = initHeight;
         acc = initAcc;
         maxSpeed = initMaxSpeed;
         position = new Vector2d(newX, newY);
+        setShape(newX, newY, initWidth, initHeight);
+    }
+    
+    private void setShape(int initX, int initY, int initWidth, int initHeight) {
+        mask = new Rectangle(initX+Option.ENTITY_COLLISION_TOLERANCE, initY+Option.ENTITY_COLLISION_TOLERANCE, initWidth-Option.ENTITY_COLLISION_TOLERANCE*2, initHeight-Option.ENTITY_COLLISION_TOLERANCE*2);
+    }
+    
+    private void changeShape(int nWidth, int nHeight) {
+        mask.setSize(nWidth-Option.ENTITY_COLLISION_TOLERANCE*2, nHeight-Option.ENTITY_COLLISION_TOLERANCE*2);
+    }
+    
+    public boolean collidesWith(Physics phyOther) {
+        return phyOther.mask.intersects(mask);
+    }
+    
+    public void drawMask(Graphics gc) {
+        gc.drawRect(mask.getX(), mask.getY(), mask.getWidth(), mask.getHeight());
     }
     
     public void move(int delta) {
@@ -45,6 +64,7 @@ public class Physics {
             calculateVelocity();
             if (isMoving) {
                 position = position.add(getVelocityVector().multi(delta));
+                mask.setLocation((float)(position.getX()+Option.ENTITY_COLLISION_TOLERANCE), (float)(position.getY()+Option.ENTITY_COLLISION_TOLERANCE));
             }
         } else {
             isMoving = false;
@@ -139,6 +159,7 @@ public class Physics {
             temp = width;
             width = height;
             height = temp;
+            changeShape(width, height);
         }
     }
     

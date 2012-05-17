@@ -6,7 +6,9 @@
 package voidgame.entity;
 import java.util.ArrayList;
 import java.util.Random;
+import org.newdawn.slick.Graphics;
 import voidgame.Option;
+import voidgame.gameplay.PlayState;
 import voidgame.library.Physics;
 import voidgame.resource.image.SpriteManager;
 /**
@@ -26,9 +28,12 @@ public class EntityManager {
         entities.remove(oldEntity);
     }
     
-    public void renderAll() {
+    public void renderAll(Graphics gr) {
         for (Entity entity : entities) {
             entity.render();
+            if (Option.DEBUG_DRAW_COLLISION_SHAPES){
+                entity.physics.drawMask(gr);
+            }
         }
     }
     
@@ -41,7 +46,21 @@ public class EntityManager {
             } else
                 entity.update(delta);
         }
+        checkArrowTouch();
         deleteEntities(entitiesToDelete);
+    }
+    
+    private void checkArrowTouch() {
+        for (Entity entity1 : entities) {
+            if (entity1 instanceof Winky) {
+                for (Entity entity2 : entities) {
+                    if (entity2 instanceof Arrow) {
+                        if (entity1.physics.collidesWith(entity2.physics)) PlayState.state = PlayState.STATE_ARROW_TOUCH;
+                    }
+                }
+                break;
+            }
+        }
     }
     
     public void deleteEntities(ArrayList<Integer> entityList) {

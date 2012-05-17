@@ -39,11 +39,13 @@ public class SpriteManager {
         return new Animation(imageArray, duration, true);
     }
     
-    public Animation getAnimationAt(int x, int y, int width, int height, int numberOfTiles, int duration, int direction) {
+    public Animation getAnimationAt(int x, int y, int width, int height, int numberOfTiles, int duration, boolean flipHorizontal, boolean flipVertical) {
         Image[] imageArray = new Image[numberOfTiles];
         for (int i=0 ; i<numberOfTiles ; i++) {
             imageArray[i] = bigSpriteSource.getSubImage(x+i*width, y, width, height);
-            imageArray[i].rotate(direction*90f-90f);
+            imageArray[i].setCenterOfRotation(0, 0);
+            if (flipHorizontal || flipVertical) imageArray[i] = imageArray[i].getFlippedCopy(flipHorizontal, flipVertical);
+            //imageArray[i].rotate(direction*90f-90f);
         }
         return new Animation(imageArray, duration, true);
     }

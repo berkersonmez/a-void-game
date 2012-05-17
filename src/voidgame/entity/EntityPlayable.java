@@ -16,7 +16,7 @@ public class EntityPlayable extends EntityAnimated implements KeyListener{
     public static final int STARTING_SPEED_COEFFICIENT = 5;
     
     
-    public EntityPlayable(int[] newMovableArea, int initWidth, int initHeight, double initAcc, double initMaxSpeed, double newX, double newY) {
+    public EntityPlayable(int[] newMovableArea, int initWidth, int initHeight, double initAcc, double initMaxSpeed, int newX, int newY) {
         setPhysics(initWidth, initHeight, initAcc, initMaxSpeed, newX, newY);
     }
         

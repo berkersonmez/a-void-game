@@ -19,7 +19,7 @@ public class Game extends StateBasedGame {
      
      public Game(String title)
      {
-          super(title + " v" + Option.WINDOW_TITLE);
+          super(title + " v" + Option.WINDOW_GAME_VERSION);
      }
      
      @Override
