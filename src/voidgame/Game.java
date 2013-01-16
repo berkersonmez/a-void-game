@@ -34,6 +34,7 @@ public class Game extends StateBasedGame {
           app.setSmoothDeltas(true);
           app.setTargetFrameRate(Option.WINDOW_FPS_LIMIT);
           app.setShowFPS(Option.WINDOW_SHOWFPS);
+          app.setIcon("voidgame/resource/image/icon.png");
           app.start();
      }
 }

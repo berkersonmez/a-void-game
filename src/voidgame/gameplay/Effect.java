@@ -35,4 +35,15 @@ public class Effect {
         val = newVal;
     }
     
+    public void addVal(int newVal) {
+        val = val + newVal;
+    }
+    
+    public Attribute getAttribute() {
+        return Attribute.getAttributeByID(attrID);
+    }
+    
+    public String getValueText() {
+        return "+"+(val)+" "+getAttribute().name;
+    }
 }

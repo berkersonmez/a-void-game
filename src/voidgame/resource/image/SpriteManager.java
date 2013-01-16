@@ -16,7 +16,7 @@ public class SpriteManager {
     
     private SpriteManager() {
         try {
-        bigSpriteSource = new Image("voidgame/resource/image/sprites.gif");
+        bigSpriteSource = new Image("voidgame/resource/image/sprites.png");
         } catch (SlickException e) {
             // Do something!
         }

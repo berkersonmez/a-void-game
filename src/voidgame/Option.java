@@ -13,10 +13,10 @@ public class Option {
     public static final int WINDOW_WIDTH = 800;
     public static final int WINDOW_HEIGHT = 480;
     public static final boolean WINDOW_FULLSCREEN = false;
-    public static final boolean WINDOW_SHOWFPS = true;
+    public static final boolean WINDOW_SHOWFPS = false;
     public static final String WINDOW_TITLE = "A Void Game";
     public static final int WINDOW_FPS_LIMIT = 60;
-    public static final double WINDOW_GAME_VERSION = 0.01;
+    public static final double WINDOW_GAME_VERSION = 1.0;
     
     public static final boolean DEBUG_DRAW_COLLISION_SHAPES = false;
     

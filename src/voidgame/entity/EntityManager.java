@@ -9,6 +9,7 @@ import java.util.Random;
 import org.newdawn.slick.Graphics;
 import voidgame.Option;
 import voidgame.gameplay.PlayState;
+import voidgame.gameplay.Score;
 import voidgame.library.Physics;
 import voidgame.resource.image.SpriteManager;
 /**
@@ -18,6 +19,7 @@ import voidgame.resource.image.SpriteManager;
 public class EntityManager {
     private ArrayList<Entity> entities = new ArrayList<Entity>();
     private int numberOfArrows = 0;
+    private int arrowPointsForScore = 0;
     
     public void addEntity(Entity newEntity) {
         entities.add(newEntity);
@@ -51,22 +53,33 @@ public class EntityManager {
     }
     
     private void checkArrowTouch() {
+        arrowPointsForScore = 0;
         for (Entity entity1 : entities) {
             if (entity1 instanceof Winky) {
                 for (Entity entity2 : entities) {
                     if (entity2 instanceof Arrow) {
-                        if (entity1.physics.collidesWith(entity2.physics)) PlayState.state = PlayState.STATE_ARROW_TOUCH;
+                        arrowPointsForScore += (int) ((1 / entity1.physics.distanceBetween(entity2.physics))*100);
+                        if (entity1.physics.collidesWith(entity2.physics)) {
+                            PlayState.state = PlayState.STATE_ARROW_TOUCH;
+                        }
                     }
                 }
                 break;
             }
         }
+        Score.addArrowPoints(arrowPointsForScore);
     }
     
     public void deleteEntities(ArrayList<Integer> entityList) {
         for (int entity : entityList) {
             entities.remove(entity);
         }
+    }
+    
+    public void flush() {
+        entities.clear();
+        numberOfArrows = 0;
+        arrowPointsForScore = 0;
     }
     
     public int getNumberOfArrows() {

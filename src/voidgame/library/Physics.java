@@ -55,6 +55,11 @@ public class Physics {
         return phyOther.mask.intersects(mask);
     }
     
+    public double distanceBetween(Physics phyOther) {
+        return Math.sqrt(Math.pow((position.getX() + ((double) width) / 2) - (phyOther.position.getX() + ((double) phyOther.width) / 2),2) + 
+                Math.pow((position.getY() + ((double) height) / 2) - (phyOther.position.getY() + ((double) phyOther.height) / 2),2));
+    }
+    
     public void drawMask(Graphics gc) {
         gc.drawRect(mask.getX(), mask.getY(), mask.getWidth(), mask.getHeight());
     }

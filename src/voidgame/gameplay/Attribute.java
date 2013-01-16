@@ -41,6 +41,16 @@ public enum Attribute {
         return randomSeed.nextInt(effect.max-effect.min+1)+effect.min;
     }
     
+    public static Attribute getAttributeByID(int attributeID) {
+        return VALUES[attributeID];
+    }
+    
+    public static void reset() {
+        for (Attribute attr : VALUES) {
+            attr.val = attr.start;
+        }
+    }
+    
     public int getVal() {
         return val;
     }

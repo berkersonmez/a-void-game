@@ -16,13 +16,14 @@ import voidgame.Option;
  * @author Berker Sönmez <brkrsnmz@gmail.com>
  */
 public class StageFactory {
-    public static int stageCount = 0;
+    public static int stageCount;
     public static Stage stg;
     
     public static ArrayList<Integer> effectChances;
     public static Map<Integer, Effect> effect;
     
     public static void init() {
+        stageCount = 0;
         effectChances = new ArrayList<Integer>();
         effect = new HashMap<Integer, Effect>();
         effectChances.add(Option.STAGE_DEFAULT_EFFECT_CHANCE_1);

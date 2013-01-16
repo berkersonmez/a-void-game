@@ -5,6 +5,7 @@
 
 package voidgame.gameplay;
 
+import java.util.ArrayList;
 import java.util.Map;
 import voidgame.Option;
 
@@ -14,6 +15,7 @@ import voidgame.Option;
  */
 public class Stage {
     private int arrowsLeft;
+    private ArrayList<Effect> stgEffects;
     
     public Stage() {
         arrowsLeft = Attribute.ARROW_COUNT.getVal();
@@ -24,11 +26,20 @@ public class Stage {
     
     
     public Stage(Stage oldStage, Map<Integer, Effect> effects) {
-        
+        stgEffects = new ArrayList<Effect>();
         for (Attribute attr : Attribute.values()) {
             attr.addVal(attr.baseInc);
-            if (effects.containsKey(attr.id))
-                attr.addVal(effects.get(attr.id).getVal());
+            if (effects.containsKey(attr.id)) {
+                Effect effect = effects.get(attr.id);
+                attr.addVal(effect.getVal());
+                effect.addVal(attr.baseInc);
+                stgEffects.add(effect);
+            } else if (attr.baseInc != 0) {
+                Effect effect = new Effect();
+                effect.setAttrID(attr.id);
+                effect.setVal(attr.baseInc);
+                stgEffects.add(effect);
+            }
         }
         arrowsLeft += Attribute.ARROW_COUNT.getVal();
         System.out.println("====STAGE CREATED FROM OLD====");
@@ -40,6 +51,10 @@ public class Stage {
         if (arrowsLeft == 0) return false;
         arrowsLeft--;
         return true;
+    }
+
+    public ArrayList<Effect> getStgEffects() {
+        return stgEffects;
     }
     
 }
